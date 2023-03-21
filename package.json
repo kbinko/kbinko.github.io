@@ -5,7 +5,7 @@
     "homepage": "https://kbinko.github.io/",
     "type": "module",
     "scripts": {
-        "predeploy": "npm run build",
+        "predeploy": "npm run dev",
         "deploy": "gh-pages -d build",
         "serve": "vite",
         "dev": "vite",
