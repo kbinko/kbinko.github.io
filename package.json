@@ -1,11 +1,11 @@
 {
-    "name": "3dfolio",
+    "name": "portfolio",
     "private": true,
     "version": "0.0.0",
-    "homepage": "https://kbinko.github.io/",
+    "homepage": "https://kbinko.github.io",
     "type": "module",
     "scripts": {
-        "predeploy": "npm run dev",
+        "predeploy": "npm run build",
         "deploy": "gh-pages -d build",
         "serve": "vite",
         "dev": "vite",
