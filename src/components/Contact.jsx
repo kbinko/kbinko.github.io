@@ -1,28 +1,66 @@
-import { useState, useRef } from 'react';
-import { motion } from 'framer-motion';
-import emailjs from '@emailjs/browser';
-import { styles } from '../styles';
-import { EarthCanvas } from './canvas';
-import { SectionWrapper } from '../hoc';
-import { slideIn } from '../utils/motion';
+import { useState, useRef } from "react";
+import { motion } from "framer-motion";
+import emailjs from "@emailjs/browser";
+import { styles } from "../styles";
+import { EarthCanvas } from "./canvas";
+import { SectionWrapper } from "../hoc";
+import { slideIn } from "../utils/motion";
 
+// template_yumq5i8;
+// service_xdpsv79;
+// PimOfzIeuUt1zrMKT
 
 const Contact = () => {
-  const formRef = useRef();
-  const [form, setForm] = useState({
-    name: '',
-    email: '',
-    message: '',
-  });
-  const [loading, setLoading] = useState(false);
+	const formRef = useRef();
+	const [form, setForm] = useState({
+		name: "",
+		email: "",
+		message: "",
+	});
+	const [loading, setLoading] = useState(false);
 
-  const handleChange = (e) => { }
+	const handleChange = (e) => {
+		const { name, value } = e.target;
+		setForm({ ...form, [name]: value });
+	};
 
-  const handleSubmit = (e) => { }
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		setLoading(true);
 
+		emailjs
+			.send(
+				"service_6lrcaeb",
+				"template_yumq5i8",
+				{
+					from_name: form.name,
+					to_name: "Konrad",
+					from_email: form.email,
+					to_email: "konradbinko@gmail.com",
+					message: form.message,
+				},
+				"PimOfzIeuUt1zrMKT"
+			)
+			.then(
+				() => {
+					setLoading(false);
+					alert("Thank you for your message! I will get back to you as soon as possible.");
 
-  
-  return (
+					setForm({
+						name: "",
+						email: "",
+						message: "",
+					});
+				},
+				(error) => {
+					setLoading(false);
+					console.log(error);
+					alert("Something went wrong. Please try again later.");
+				}
+			);
+	};
+
+	return (
 		<div className="xl:mt-12 xl:flex-row flex-col-reverse flex gap-10 overflow-hidden">
 			<motion.div
 				variants={slideIn("left", "tween", 0.2, 1)}
@@ -56,14 +94,14 @@ const Contact = () => {
 					<label className="flex flex-col">
 						<span className="text-white font-medium mb-4">Your Message</span>
 					</label>
-						<textarea
-							rows="7"
-							name="message"
-							value={form.message}
-							onChange={handleChange}
-							placeholder="What do you want to say?"
-							className="bg-tertiary rounded-lg py-4 px-6 placeholder:text-secondary text-white outlined-none border-none font-medium"
-						/>
+					<textarea
+						rows="7"
+						name="message"
+						value={form.message}
+						onChange={handleChange}
+						placeholder="What do you want to say?"
+						className="bg-tertiary rounded-lg py-4 px-6 placeholder:text-secondary text-white outlined-none border-none font-medium"
+					/>
 
 					<button
 						type="submit"
@@ -73,14 +111,13 @@ const Contact = () => {
 				</form>
 			</motion.div>
 
-      <motion.div
-        variants={slideIn("right", "tween", 0.2, 1)}
-        className="xl:flex-1 xl:h-auto md:h-[550px] h-[350px]"
-      >
-        <EarthCanvas />
-      </motion.div>
+			<motion.div
+				variants={slideIn("right", "tween", 0.2, 1)}
+				className="xl:flex-1 xl:h-auto md:h-[550px] h-[350px]">
+				<EarthCanvas />
+			</motion.div>
 		</div>
-  );
-}
+	);
+};
 
-export default SectionWrapper(Contact, 'contact');
+export default SectionWrapper(Contact, "contact");
