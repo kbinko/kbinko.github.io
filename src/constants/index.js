@@ -19,7 +19,7 @@ import {
     starbucks,
     tesla,
     shopify,
-    carrent,
+    Moviebrowser,
     jobit,
     tripguide,
     threejs,
@@ -189,23 +189,23 @@ const testimonials = [{
 ];
 
 const projects = [{
-        name: "Car Rent",
-        description: "Web-based platform that allows users to search, book, and manage car rentals from various providers, providing a convenient and efficient solution for transportation needs.",
+        name: "Movie browser",
+        description: "Web-base platform that allows users to search through movie database and check movies for details. Currently not mobile friendly.",
         tags: [{
                 name: "react",
                 color: "blue-text-gradient",
             },
             {
-                name: "mongodb",
+                name: "css",
                 color: "green-text-gradient",
             },
             {
-                name: "tailwind",
+                name: "bootstrap",
                 color: "pink-text-gradient",
             },
         ],
-        image: carrent,
-        source_code_link: "https://github.com/",
+        image: Moviebrowser,
+        source_code_link: "https://kbinko.github.io/moviebrowser/",
     },
     {
         name: "Job IT",
